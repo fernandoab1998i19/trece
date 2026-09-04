@@ -1,66 +1,94 @@
-# Architectural Canvas
+# TRECE — Arquitectura e Ingeniería
 
-Actúa como un Senior Frontend Developer y Senior UX/UI Designer. Necesito que desarrolles una landing page completamente funcional y responsive para una firma de arquitectura premium.
+> Firma de arquitectura e ingeniería de autor. Residencias minimalistas en hormigón visto, madera noble y luz natural.
 
-ESTILO VISUAL Y DISEÑO (ESTRICTO):
+---
 
-Estética: Minimalista, sofisticada, masculina, editorial. Estilo "Brutalismo Cálido".
+## 🏛️ Sobre el Proyecto
 
-Colores: Fondo principal: #F7F7F5 (Blanco hueso/crema). Texto principal: #1C1C1C (Grafito). Detalles y botón de acento: #9C5B42 (Terracota desaturado).
+Sitio web institucional e interactivo desarrollado para **TRECE Arquitectura e Ingeniería**. La plataforma fue concebida bajo los más altos estándares de diseño editorial (*Architectural Digest style*), priorizando el impacto visual fotográfico, la riqueza táctil de los materiales y la conversión directa con el cliente.
 
-Tipografía: Usa una fuente Serif elegante (como Playfair Display) para todos los títulos (H1, H2) y una Sans-Serif moderna (como Manrope o Inter) para párrafos y botones.
+---
 
-UI: NO uses bordes redondeados (usa rounded-none o máximo rounded-sm). NO uses sombras pesadas (cero box-shadow o muy sutil).
+## 🌟 Características Principales
 
-Espaciado (CRÍTICO): Usa muchísimo espacio en blanco (padding y margin amplios). Nada debe sentirse apretado.
+- **Diseño Editorial Luxury**: Paleta de color hueso/crema (`#F4F4F0`), ausencia de tarjetas corporativas genéricas y más del 80% de espacio dedicado a fotografía arquitectónica de gran formato.
+- **Módulo Interactivo Antes & Después**: Comparador deslizable táctil en tiempo real para visualizar proyectos de remodelación e interiorismo por categorías:
+  - *Salas & Áreas Sociales*
+  - *Cocinas & Comedores*
+  - *Dormitorio Principal & Baños*
+  - *Fachadas & Exteriores*
+- **Identidad Oficial Vectorizada**: Isotipo apilado `TE` e insignia oficial vectorizados en SVG de alta nitidez.
+- **Showcase de Obras Reales**: Integración de proyectos entregados directamente desde el feed oficial de Instagram [`@trece.arq.ing`](https://www.instagram.com/trece.arq.ing).
+- **Sección Familia TRECE**: Narrativa humana de acompañamiento directo con los fundadores, transparencia y visitas a obra.
+- **Canal Directo de WhatsApp**: Enlaces de conversión al número **`+591 77019154`**.
+- **Responsive de Alta Gama**: Adaptabilidad fluida para dispositivos móviles (iPhone 14/15/16 Pro Max y modelos Ultra).
 
-IMÁGENES (GENERADAS POR TI):
+---
 
-Genera o inserta automáticamente imágenes de alta calidad (placeholders) que encajen perfectamente.
+## 🛠️ Tecnologías Utilizadas
 
-Las imágenes deben mostrar: arquitectura moderna, hormigón visto, madera, ventanales grandes, interiores minimalistas y de lujo.
+- **Core**: React 18 + TypeScript + Vite
+- **Routing**: TanStack Router (File-based routing)
+- **Styling**: TailwindCSS v4 + Vanilla CSS Design Tokens (oklch)
+- **Vector Graphics**: Custom SVG Brand Mark & Monogram
+- **Icons & UI**: Lucide React + Custom Architectural Icons
+- **State Management & Hooks**: React Hooks (`useState`, `useRef`, `useCallback`)
 
-Las imágenes son las protagonistas absolutas del diseño; dales gran tamaño.
+---
 
-SECCIONES A INCLUIR:
+## 🚀 Instalación y Ejecución Local
 
-Navbar: Minimalista. Logo a la izquierda (texto simple "ESTUDIO ARQ"), links a la derecha (Proyectos, Estudio) y un botón discreto de WhatsApp.
+### Prerrequisitos
+- Node.js (v18+) o Bun
 
-Hero Section: Una imagen o grid fotográfico masivo. Un título Serif muy grande (ej. "Arquitectura que se vive."). Un subtítulo corto y un botón principal "Explorar Proyectos".
+### Pasos
 
-Grid de Proyectos: Un layout asimétrico (estilo revista) mostrando 3 o 4 casas. Cada tarjeta debe tener la foto generada, el nombre del proyecto abajo en Serif, y "Ver detalles".
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/fernandoab1998i19/trece.git
+   cd trece
+   ```
 
-Sección El Estudio: Fondo ligeramente más oscuro (#EBEBE6). Texto en dos columnas que transmita profesionalismo y diseño.
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
 
-Call to Action Final: Texto grande "Empecemos a diseñar tu espacio". Un botón grande y claro con el ícono de WhatsApp que diga "Hablar por WhatsApp".
+3. Iniciar el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
-Footer: Sencillo y limpio.
+4. Abrir en el navegador:
+   `http://localhost:5173`
 
-REGLAS DE NEGOCIO:
+---
 
-CERO FORMULARIOS DE CONTACTO. No incluyas inputs ni áreas de mensaje. Todo el contacto se dirige exclusivamente a botones de WhatsApp.
+## 📂 Estructura del Proyecto
 
-Mobile-first: En celular el texto debe ser legible, los botones grandes y debe poder navegarse con una mano.
-
-Añade animaciones de entrada muy sutiles (fade-up) a medida que se hace scroll, sin exagerar.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/7b44c4cd-9902-4734-8f50-c5c6c64880c7).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
 ```
+trece/
+├── public/                # Favicons oficiales (SVG, ICO) y assets estáticos
+├── src/
+│   ├── assets/            # Fotografías reales de obras e imágenes de alta definición
+│   ├── components/        # Componentes UI reutilizables (Logo.tsx, etc.)
+│   ├── hooks/             # Custom React hooks (useReveal, useMobile)
+│   ├── routes/            # Configuración de rutas (index.tsx, __root.tsx)
+│   ├── styles.css         # Tokens de diseño CSS y utilidades Tailwind
+│   └── main.tsx           # Punto de entrada de React
+├── package.json           # Dependencias y scripts
+└── README.md              # Documentación del proyecto
+```
+
+---
+
+## 📞 Contacto & Redes Sociales
+
+- **Firma**: TRECE Arquitectura e Ingeniería
+- **WhatsApp Directo**: [+591 77019154](https://wa.me/59177019154)
+- **Instagram Oficial**: [@trece.arq.ing](https://www.instagram.com/trece.arq.ing)
+
+---
+
+© {new Date().getFullYear()} TRECE Arquitectura e Ingeniería. Todos los derechos reservados.
