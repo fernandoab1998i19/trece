@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 414" width="100%" height="100%">
+  <circle cx="207" cy="207" r="200" fill="#0A0B0D"/>
+  <g fill="#FFFFFF">
+    {/* T */}
+    <path d="M 52 135 H 108 V 150 H 88 V 205 H 72 V 150 H 52 Z"/>
+    {/* R */}
+    <path d="M 116 135 H 168 C 176 135 182 141 182 149 V 162 C 182 170 176 176 168 176 H 134 V 205 H 118 V 135 Z M 134 149 V 162 H 164 V 149 H 134 Z"/>
+    <path d="M 148 170 L 180 205 H 160 L 134 176 Z"/>
+    <rect x="120" y="182" width="10" height="10" rx="1"/>
+    {/* E */}
+    <path d="M 190 135 H 242 V 150 H 206 V 162 H 238 V 176 H 206 V 190 H 242 V 205 H 190 Z"/>
+    {/* C */}
+    <path d="M 250 135 H 302 V 150 H 266 V 190 H 302 V 205 H 250 Z"/>
+    {/* E */}
+    <path d="M 310 135 H 362 V 150 H 326 V 162 H 358 V 176 H 326 V 190 H 362 V 205 H 310 Z"/>
+    <text x="207" y="235" fill="rgba(255, 255, 255, 0.9)" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="11.5" letter-spacing="4.2" text-anchor="middle">ARQUITECTURA E INGENIERÍA</text>
+  </g>
+</svg>
