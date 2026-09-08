@@ -108,6 +108,9 @@ function Navbar() {
             <a href="#servicios" className="transition-colors hover:text-white">
               Servicios
             </a>
+            <a href="#planificador" className="transition-colors hover:text-white text-primary font-bold">
+              Planificador
+            </a>
             <a href="#remodelacion" className="transition-colors hover:text-white">
               Remodelación
             </a>
@@ -640,6 +643,321 @@ function BeforeAfterRemodel() {
           </div>
         </Reveal>
 
+function ProjectPlannerWizard() {
+  const [level, setLevel] = useState(1);
+  const [projectType, setProjectType] = useState("Residencia de Autor Nueva");
+  const [scale, setScale] = useState("250 m² a 500 m²");
+  const [materials, setMaterials] = useState<string[]>([
+    "Hormigón Visto Escultórico",
+    "Panelería en Madera Noble & Teca",
+  ]);
+  const [services, setServices] = useState<string[]>([
+    "Construcción Integrada Llave en Mano",
+  ]);
+
+  const projectTypes = [
+    {
+      id: "obra-nueva",
+      title: "Residencia de Autor Nueva",
+      desc: "Construcción integral desde cero en hormigón visto, madera y luz natural.",
+      tag: "Obra Nueva",
+    },
+    {
+      id: "remodelacion",
+      title: "Remodelación & Restructuración",
+      desc: "Transformación total de espacios existentes, vanos de gran luz y acabados de lujo.",
+      tag: "Restructuración",
+    },
+    {
+      id: "interiorismo",
+      title: "Interiorismo & Materia Noble",
+      desc: "Diseño de mobiliario a medida, iluminación museográfica y paisajismo.",
+      tag: "Interiorismo",
+    },
+    {
+      id: "ingenieria",
+      title: "Ingeniería Estructural & Cálculo",
+      desc: "Cálculo sismorresistente, losas voladas y soluciones de alta complejidad.",
+      tag: "Ingeniería",
+    },
+  ];
+
+  const scales = [
+    {
+      id: "hasta-250",
+      title: "Hasta 250 m²",
+      subtitle: "Espacio Íntimo / Residencial Minimalista",
+    },
+    {
+      id: "250-500",
+      title: "250 m² a 500 m²",
+      subtitle: "Residencia Unifamiliar de Confort",
+    },
+    {
+      id: "500-1000",
+      title: "500 m² a 1,000 m²",
+      subtitle: "Villa / Residencia de Autor con Patio Central",
+    },
+    {
+      id: "mas-1000",
+      title: "Más de 1,000 m²",
+      subtitle: "Macro Estructura / Complejo Residencial",
+    },
+  ];
+
+  const materialOptions = [
+    "Hormigón Visto Escultórico",
+    "Panelería en Madera Noble & Teca",
+    "Grandes Ventanales & Luz Cenital",
+    "Revestimientos en Mármol & Piedra",
+    "Estructuras de Acero & Volados",
+  ];
+
+  const serviceOptions = [
+    "Anteproyecto & Planos Arquitectónicos",
+    "Construcción Integrada Llave en Mano",
+    "Cálculo Sismorresistente de Alta Precisión",
+    "Supervisión Permanente en Sitio por Ingenieros",
+    "Interiorismo, Mobiliario & Paisajismo",
+  ];
+
+  const toggleMaterial = (mat: string) => {
+    setMaterials((prev) =>
+      prev.includes(mat) ? prev.filter((m) => m !== mat) : [...prev, mat]
+    );
+  };
+
+  const toggleService = (srv: string) => {
+    setServices((prev) =>
+      prev.includes(srv) ? prev.filter((s) => s !== srv) : [...prev, srv]
+    );
+  };
+
+  const generateWhatsAppMessage = () => {
+    const text = `Hola TRECE Arquitectura e Ingeniería, quiero compartir mi idea de proyecto:
+
+• Nivel 1 (Tipo): ${projectType}
+• Nivel 2 (Escala): ${scale}
+• Nivel 3 (Materiales): ${materials.join(", ") || "Por definir"}
+• Nivel 4 (Alcance): ${services.join(", ") || "Por definir"}
+
+Me gustaría coordinar una reunión de asesoría directa.`;
+    return `https://wa.me/59177019154?text=${encodeURIComponent(text)}`;
+  };
+
+  return (
+    <section id="planificador" className="bg-[#F4F4F0] px-4 py-16 sm:px-6 md:px-12 sm:py-28 md:py-44 border-t border-border/40">
+      <div className="mx-auto max-w-[1500px] space-y-12">
+        
+        {/* Header */}
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-b border-border/60 pb-8">
+            <div>
+              <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.35em] uppercase text-primary mb-2 sm:mb-3 block">
+                INTERACTIVO · DEL CLIENTE A LA OBRA
+              </span>
+              <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-extralight tracking-tight text-foreground">
+                Planifica tu Proyecto
+              </h2>
+            </div>
+            <p className="max-w-md text-xs sm:text-sm leading-relaxed text-muted-foreground font-sans">
+              Configura tu idea paso a paso en 4 niveles. Generaremos una propuesta inicial estructurada para conversar directamente con nuestros arquitectos e ingenieros.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Progress Bar & Level Tabs */}
+        <Reveal delay={50}>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-xs font-bold tracking-[0.2em] uppercase text-foreground">
+              <span>Nivel {level} de 4: {level === 1 ? "Tipo de Proyecto" : level === 2 ? "Escala & Metraje" : level === 3 ? "Materiales & Estilo" : "Alcance de Servicio"}</span>
+              <span className="text-primary">{level * 25}% Completado</span>
+            </div>
+            <div className="w-full h-1.5 bg-black/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary transition-all duration-500 ease-out rounded-full"
+                style={{ width: `${level * 25}%` }}
+              />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Dynamic Level Content */}
+        <div className="bg-black/90 text-white p-6 sm:p-10 md:p-14 rounded-sm shadow-2xl space-y-10 border border-white/10">
+          
+          {/* LEVEL 1: Tipo de Proyecto */}
+          {level === 1 && (
+            <Reveal className="space-y-6">
+              <div className="space-y-2">
+                <span className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase block">Nivel 1</span>
+                <h3 className="font-serif text-3xl md:text-5xl font-extralight text-white">¿Qué tipo de proyecto deseas realizar?</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                {projectTypes.map((pt) => (
+                  <button
+                    key={pt.id}
+                    onClick={() => setProjectType(pt.title)}
+                    className={`text-left p-6 rounded-sm border transition-all duration-300 ${
+                      projectType === pt.title
+                        ? "border-primary bg-primary/20 shadow-xl ring-1 ring-primary"
+                        : "border-white/15 bg-white/5 hover:border-white/30 hover:bg-white/10"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary">{pt.tag}</span>
+                      {projectType === pt.title && <span className="h-2 w-2 rounded-full bg-primary" />}
+                    </div>
+                    <h4 className="font-sans text-xl font-bold text-white uppercase tracking-tight">{pt.title}</h4>
+                    <p className="text-xs text-white/70 mt-2 font-light leading-relaxed">{pt.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+          )}
+
+          {/* LEVEL 2: Escala & Metraje */}
+          {level === 2 && (
+            <Reveal className="space-y-6">
+              <div className="space-y-2">
+                <span className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase block">Nivel 2</span>
+                <h3 className="font-serif text-3xl md:text-5xl font-extralight text-white">¿Cuál es el área o metraje estimado?</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {scales.map((sc) => (
+                  <button
+                    key={sc.id}
+                    onClick={() => setScale(sc.title)}
+                    className={`text-left p-6 rounded-sm border transition-all duration-300 ${
+                      scale === sc.title
+                        ? "border-primary bg-primary/20 shadow-xl ring-1 ring-primary"
+                        : "border-white/15 bg-white/5 hover:border-white/30 hover:bg-white/10"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold tracking-[0.2em] text-white/60">ESTIMACIÓN</span>
+                      {scale === sc.title && <span className="h-2 w-2 rounded-full bg-primary" />}
+                    </div>
+                    <h4 className="font-sans text-2xl font-bold text-white tracking-tight">{sc.title}</h4>
+                    <p className="text-xs text-white/70 mt-1 font-light">{sc.subtitle}</p>
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+          )}
+
+          {/* LEVEL 3: Materialidad */}
+          {level === 3 && (
+            <Reveal className="space-y-6">
+              <div className="space-y-2">
+                <span className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase block">Nivel 3</span>
+                <h3 className="font-serif text-3xl md:text-5xl font-extralight text-white">¿Qué materiales e iluminación imaginas?</h3>
+                <p className="text-xs text-white/60">Selecciona una o varias opciones según tus preferencias.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                {materialOptions.map((mat) => {
+                  const selected = materials.includes(mat);
+                  return (
+                    <button
+                      key={mat}
+                      onClick={() => toggleMaterial(mat)}
+                      className={`text-left p-5 rounded-sm border transition-all duration-300 flex items-center justify-between ${
+                        selected
+                          ? "border-primary bg-primary/20 text-white ring-1 ring-primary"
+                          : "border-white/15 bg-white/5 text-white/80 hover:border-white/30"
+                      }`}
+                    >
+                      <span className="text-sm font-semibold tracking-wide">{mat}</span>
+                      <span className={`h-4 w-4 rounded-full border flex items-center justify-center text-[10px] font-bold ${
+                        selected ? "border-primary bg-primary text-white" : "border-white/30"
+                      }`}>
+                        {selected ? "✓" : "+"}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </Reveal>
+          )}
+
+          {/* LEVEL 4: Alcance del Servicio */}
+          {level === 4 && (
+            <Reveal className="space-y-6">
+              <div className="space-y-2">
+                <span className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase block">Nivel 4</span>
+                <h3 className="font-serif text-3xl md:text-5xl font-extralight text-white">¿Qué alcance de servicio necesitas?</h3>
+                <p className="text-xs text-white/60">Selecciona los componentes que deseas encomendar a nuestros ingenieros y arquitectos.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {serviceOptions.map((srv) => {
+                  const selected = services.includes(srv);
+                  return (
+                    <button
+                      key={srv}
+                      onClick={() => toggleService(srv)}
+                      className={`text-left p-5 rounded-sm border transition-all duration-300 flex items-center justify-between ${
+                        selected
+                          ? "border-primary bg-primary/20 text-white ring-1 ring-primary"
+                          : "border-white/15 bg-white/5 text-white/80 hover:border-white/30"
+                      }`}
+                    >
+                      <span className="text-sm font-semibold tracking-wide">{srv}</span>
+                      <span className={`h-4 w-4 rounded-full border flex items-center justify-center text-[10px] font-bold ${
+                        selected ? "border-primary bg-primary text-white" : "border-white/30"
+                      }`}>
+                        {selected ? "✓" : "+"}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Summary Preview */}
+              <div className="mt-8 p-6 bg-white/5 rounded-sm border border-white/10 space-y-3">
+                <span className="text-[9px] font-bold tracking-[0.25em] text-primary uppercase block">Resumen de tu Idea</span>
+                <div className="text-xs text-white/80 space-y-1.5 font-light leading-relaxed">
+                  <p><strong>Proyecto:</strong> {projectType}</p>
+                  <p><strong>Escala:</strong> {scale}</p>
+                  <p><strong>Materiales:</strong> {materials.join(", ") || "Sin especificar"}</p>
+                  <p><strong>Servicios:</strong> {services.join(", ") || "Sin especificar"}</p>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between border-t border-white/15 pt-6">
+            {level > 1 ? (
+              <button
+                onClick={() => setLevel((prev) => Math.max(1, prev - 1))}
+                className="text-xs font-bold tracking-[0.2em] uppercase text-white/70 hover:text-white transition-colors py-2 px-4"
+              >
+                ← Nivel Anterior
+              </button>
+            ) : <div />}
+
+            {level < 4 ? (
+              <button
+                onClick={() => setLevel((prev) => Math.min(4, prev + 1))}
+                className="inline-flex items-center gap-2 border border-white/30 bg-white/10 px-6 py-3 text-xs font-bold tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black rounded-full transition-all"
+              >
+                <span>Siguiente Nivel</span>
+                <span>→</span>
+              </button>
+            ) : (
+              <a
+                href={generateWhatsAppMessage()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 border border-primary bg-primary px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black rounded-full transition-all shadow-xl"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                <span>Enviar Idea de Proyecto por WhatsApp →</span>
+              </a>
+            )}
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
@@ -962,6 +1280,7 @@ function Footer() {
         <div className="flex flex-wrap justify-center gap-10 text-[11px] font-semibold tracking-[0.22em] uppercase text-muted-foreground">
           <a href="#proyectos" className="hover:text-foreground transition-colors">Proyectos</a>
           <a href="#servicios" className="hover:text-foreground transition-colors">Servicios</a>
+          <a href="#planificador" className="hover:text-foreground transition-colors">Planificador</a>
           <a href="#remodelacion" className="hover:text-foreground transition-colors">Remodelación</a>
           <a href="#familia" className="hover:text-foreground transition-colors">Familia TRECE</a>
           <a href="#manifiesto" className="hover:text-foreground transition-colors">Manifiesto</a>
@@ -984,6 +1303,7 @@ function Index() {
         <Hero />
         <Projects />
         <ServicesAndProcess />
+        <ProjectPlannerWizard />
         <BeforeAfterRemodel />
         <FamilyWarmth />
         <Manifesto />
