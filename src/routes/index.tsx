@@ -642,6 +642,10 @@ function BeforeAfterRemodel() {
             </a>
           </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
 
 function ProjectPlannerWizard() {
   const [level, setLevel] = useState(1);
